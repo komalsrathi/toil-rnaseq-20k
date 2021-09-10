@@ -43,26 +43,47 @@ Bioinformatics Analysis:
 `Data Summary`_
 """""""""""""""
 
-* Total samples: 19418; Usable samples: 18245.
-* Adult Tumors: n = 9711 (53.22%)
+.. code-block:: R
 
-    - TCGA: n = 9535
-    - Medulloblastomas: n = 97
-    - SCLC: n = 79
-    - 99.52% Primary, 0.48% Recurrent
+    # sample count by study
 
-* Pediatric Tumors: n = 675 (3.70%)
+           study_id   n()
+    1         CBTTC  1110
+    2          GTEx  7863
+    3          PNOC    27
+    4 SCLC_GSE60052    79
+    5        TARGET  1399
+    6          TCGA 10661  
 
-    - TARGET: n = 675
-    - 82.51% Primary, 17.48% Recurrent
+    # sample count by study + definition
 
-* Normals: n = 7859 (43.07%)
-
-    - GTEx: n = 7859
+            study_id                                              definition  n()
+    1          CBTTC                                              Metastatic   26
+    2          CBTTC                                     Primary Solid Tumor 1048
+    3          CBTTC                                   Recurrent Solid Tumor   18
+    4          CBTTC                                             unavailable   18
+    5           GTEx                                                 Normals 7863
+    6           PNOC                                              Metastatic    2
+    7           PNOC                                     Primary Solid Tumor   25
+    8  SCLC_GSE60052                                     Primary Solid Tumor   79
+    9         TARGET      Blood Derived Cancer - Bone Marrow, Post-treatment   12
+    10        TARGET Blood Derived Cancer - Peripheral Blood, Post-treatment    1
+    11        TARGET                                              Metastatic    1
+    12        TARGET              Primary Blood Derived Cancer - Bone Marrow  672
+    13        TARGET         Primary Blood Derived Cancer - Peripheral Blood  129
+    14        TARGET                                     Primary Solid Tumor  449
+    15        TARGET            Recurrent Blood Derived Cancer - Bone Marrow  108
+    16        TARGET       Recurrent Blood Derived Cancer - Peripheral Blood    3
+    17        TARGET                                   Recurrent Solid Tumor   13
+    18        TARGET                                     Solid Tissue Normal   11
+    19          TCGA                                Additional - New Primary   11
+    20          TCGA                                   Additional Metastatic    1
+    21          TCGA                                              Metastatic  392
+    22          TCGA         Primary Blood Derived Cancer - Peripheral Blood  172
+    23          TCGA                                     Primary solid Tumor 9289
+    24          TCGA                                     Primary Solid Tumor   18
+    25          TCGA                                   Recurrent Solid Tumor   50
+    26          TCGA                                     Solid Tissue Normal  728  
   
-.. note::
-
-	Metastatic samples are only available for TCGA and have a small sample size, usually n = 1 or 2. BRCA = 7, TCHA = 8, SKCM = 366. So we are not using them in the analysis.
-
 .. _getdata: ./docs/getdata.rst
 .. _Data Summary: ./data/metadata_filtered/filtered_datasets.txt
