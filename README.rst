@@ -84,6 +84,4 @@ Bioinformatics Analysis:
     24          TCGA                                     Primary Solid Tumor   18
     25          TCGA                                   Recurrent Solid Tumor   50
     26          TCGA                                     Solid Tissue Normal  728  
-  
-.. _getdata: ./docs/getdata.rst
-.. _Data Summary: ./data/metadata_filtered/filtered_datasets.txt
+
