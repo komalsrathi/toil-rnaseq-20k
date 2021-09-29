@@ -24,12 +24,19 @@ histology <- read.delim('~/Projects/PediatricOpenTargets/OpenPedCan-analysis/dat
 histology <- histology %>%
   filter(cohort == "TCGA")
 
+# clinical unavailable from GDC
+gdc_no_clin <- read.delim('data/metadata/opentargets_remove_samples.txt')
+
 # tpm from diseaseXpress
 tcga_tpm <- readRDS('~/Projects/toil-rnaseq-20k/data/results/expression/tumor_datasets_TPM.RDS')
 tcga_tpm <- tcga_tpm %>%
   dplyr::select(tcga_meta$sample_id)
 identical(colnames(tcga_tpm), tcga_meta$sample_id)
 colnames(tcga_tpm) <- tcga_meta$sample_barcode
+
+# remove samples that have no GDC info
+tcga_tpm <- tcga_tpm %>%
+  dplyr::select(-c(gdc_no_clin$Kids_First_Biospecimen_ID))
 saveRDS(tcga_tpm, '~/Projects/toil-rnaseq-20k/data/results/expression/tcga-gene-expression-rsem-tpm-collapsed.rds')
 
 # counts from diseaseXpress
@@ -38,6 +45,10 @@ tcga_counts <- tcga_counts %>%
   dplyr::select(tcga_meta$sample_id)
 identical(colnames(tcga_counts), tcga_meta$sample_id)
 colnames(tcga_counts) <- tcga_meta$sample_barcode
+
+# remove samples that have no GDC info
+tcga_counts <- tcga_counts %>%
+  dplyr::select(-c(gdc_no_clin$Kids_First_Biospecimen_ID))
 saveRDS(tcga_counts, '~/Projects/toil-rnaseq-20k/data/results/expression/tcga-gene-counts-rsem-expected_count-collapsed.rds')
 write.table(colnames(tcga_counts), file = '~/Desktop/TCGA_QC/TCGA_usable_barcode_list.txt', quote = F, row.names = F, col.names = F)
 
